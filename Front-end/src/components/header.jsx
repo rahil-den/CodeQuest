@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../store/auth";
 import './header.css'; // Importing the external CSS file
-
+import Avatar from '@mui/material/Avatar';
 const Header = () => {
   const [isMobileNavVisible, setMobileNavVisible] = useState(false);
+  let { isLoggedIn } = useAuth();
 
   const toggleMobileNav = () => {
     setMobileNavVisible(!isMobileNavVisible);
@@ -39,14 +41,28 @@ const Header = () => {
         </div>
 
         {/* Login and Registration Buttons for Larger Screens */}
-        <div className="auth-buttons">
-          <div className="login-button">
-            <Link to="/login" className="login-link">Login</Link>
+        {isLoggedIn ? <div className="auth-buttons">
+          <div className="profile-button">
+          <Link to="/user/dashboard" className="profile-link">
+      <Avatar
+        alt="User Profile"
+        // src="https://icons8.com/icon/z-JBA_KtSkxG/test-account"
+      
+      />
+    </Link>
           </div>
-          <div className="register-button">
-            <Link to="/register" className="register-link">Register</Link>
+          <div className="login-button">
+            <Link to="/logout" className="login-link">Logout</Link>
           </div>
         </div>
+          : <div className="auth-buttons">
+            <div className="login-button">
+              <Link to="/login" className="login-link">Login</Link>
+            </div>
+            <div className="register-button">
+              <Link to="/signup" className="register-link">Register</Link>
+            </div>
+          </div>}
       </div>
 
       {/* Mobile Navigation */}

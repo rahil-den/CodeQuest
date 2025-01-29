@@ -7,6 +7,7 @@ function Index() {
   return (
     <>
       <Header />
+      {/* Hero Section Below 👇🏻 */}
       <div className="container">
         <h1>Welcome to CodeQuest</h1>
         <h2>Learn to code with us</h2>
@@ -25,7 +26,7 @@ function Index() {
             Map
           </Link>
         </div>
-      </div>
+      </div> 
     </>
   );
 }

@@ -1,0 +1,40 @@
+/* Align the table to the left side of the screen */
+.table-container {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    top: 25vh;
+    /* background-color: red; */
+    position: relative;
+  /* Stack the search and table vertically */
+    padding: 20px;
+  }
+  
+  .search-header {
+    width: 50%; /* You can adjust this value to control the search header's size */
+    margin-bottom: 20px;
+    top: 50rem; /* Space between the search header and the table */
+  }
+  
+
+  
+  .table {
+    width: 80%; /* You can adjust this value to control the table's size */
+    max-width: 800px; /* Maximum width of the table */
+  }
+  
+  /* Style the table for responsiveness */
+  @media screen and (max-width: 768px) {
+    .table {
+      width: 100%; /* Make the table full-width on smaller screens */
+    }
+  
+    .table td, .table th {
+      font-size: 14px; /* Adjust font size for smaller screens */
+    }
+  
+    .table-cell {
+      padding: 8px; /* Reduce padding for smaller screens */
+    }
+  }
+  
