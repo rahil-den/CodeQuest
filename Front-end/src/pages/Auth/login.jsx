@@ -21,7 +21,7 @@ const Login = () => {
             // Add your login logic here (API calls, state management, etc.)
             login({ email, password }).then((data) => {
                 storeTokenInLS(data);
-                naivgate('/');
+                naivgate('/user/dashboard');
             });
             console.log('Logged in with:', { email, password });
         }

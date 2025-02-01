@@ -19,8 +19,8 @@ function Index() {
           started now!
         </p>
         <div className="button-container">
-          <Link to="/Practie" className="button">
-           Practie
+          <Link to="/Practice" className="button">
+           Practice
           </Link>
           <Link to="/map" className="button">
             Map

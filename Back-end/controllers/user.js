@@ -76,4 +76,56 @@ const loginUser = async (req, res) => {
   }
 }
 
-export { addUser, loginUser };
+const getUserInfo = async (req, res) => {
+  try {
+    // Set the search path to the 'public' schema
+    await client.query("SET search_path TO 'public'");
+
+    // Get the user ID from the request object
+    const userId = req.user.id;
+
+    // Get the user from the database
+    const result = await client.query(
+      `SELECT * FROM users WHERE id = $1`,
+      [userId]
+    );
+    console.log(result.rows);
+
+    // Send a success response with the user
+    res.status(200).json({
+      message: "User found",
+      user: result.rows[0],
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to get user" });
+  }
+}
+
+const updateUser = async (req, res) => {
+  try {
+    // Set the search path to the 'public' schema
+    await client.query("SET search_path TO 'public'");
+
+    // Get the user ID from the request object
+    const userId = req.user.id;
+
+    // Destructure the user data from the request body
+    const { username } = req.body;
+
+    // Update the user in the database
+    const result = await client.query(
+      `UPDATE users SET username = $1  WHERE id = $2 RETURNING *`,
+      [username, userId]
+    );
+
+    // Send a success response with the updated user
+    res.status(200).json({
+      message: "User updated",
+      user: result.rows[0],
+    });
+  } catch (error) {
+    res.status(500).json({ error: "Failed to update user" });
+  }
+}
+
+export { addUser, loginUser, getUserInfo,updateUser };

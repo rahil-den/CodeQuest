@@ -12,29 +12,24 @@ import {
 import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
-import { signUp } from "../../service/api.js";
+import {  updateUser } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
 
-const SignUp = () => {
-  // useEffect(() => {
-  //   document.title = "Registration | CodeQuest"; // Set page title
-  // }, []);
+const EditUser = () => {
 
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
-    password: "",
   });
 
   const [errors, setErrors] = useState({
+    id: 0,
     username: "",
     email: "",
     password: "",
   });
 
-  const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   const handleChange = (e) => {
@@ -44,26 +39,10 @@ const SignUp = () => {
 
   const validateForm = () => {
     let isValid = true;
-    let newErrors = { username: "", email: "", password: "" };
+    let newErrors = { username: "" };
 
     if (!formData.username.trim()) {
       newErrors.username = "Username is required";
-      isValid = false;
-    }
-
-    if (!formData.email.trim()) {
-      newErrors.email = "Email is required";
-      isValid = false;
-    } else if (!/\S+@\S+\.\S+/.test(formData.email)) {
-      newErrors.email = "Invalid email format";
-      isValid = false;
-    }
-
-    if (!formData.password) {
-      newErrors.password = "Password is required";
-      isValid = false;
-    } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters long";
       isValid = false;
     }
 
@@ -76,9 +55,9 @@ const SignUp = () => {
 
     if (validateForm()) {
       setIsSubmitting(true);
-      signUp(formData).then((data) => {
-        confirm("User created successfully");
-        navigate("/login");
+      updateUser(formData).then((data) => {
+        confirm("Updated Profile successfully");
+        navigate("/user/dashboard");
       }).catch((error) => {
         console.log(error);
       });
@@ -108,7 +87,7 @@ const SignUp = () => {
         </Box>
 
         <Typography variant="h4" fontWeight="bold" gutterBottom color="white">
-          Registration
+          Edit Profile
         </Typography>
 
         <form onSubmit={handleSubmit} style={{ width: "100%" }}>
@@ -127,46 +106,6 @@ const SignUp = () => {
               />
             </Grid>
 
-            {/* Email */}
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                error={!!errors.email}
-                helperText={errors.email}
-                sx={{ backgroundColor: "white", borderRadius: 1 }}
-              />
-            </Grid>
-
-            {/* Password */}
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                type={showPassword ? "text" : "password"}
-                label="Password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                error={!!errors.password}
-                helperText={errors.password}
-                sx={{ backgroundColor: "white", borderRadius: 1 }}
-                InputProps={{
-                  endAdornment: (
-                    <InputAdornment position="end">
-                      <IconButton
-                        onClick={() => setShowPassword(!showPassword)}
-                        edge="end"
-                      >
-                        {showPassword ? <Visibility /> : <VisibilityOff />}
-                      </IconButton>
-                    </InputAdornment>
-                  ),
-                }}
-              />
-            </Grid>
 
             {/* Submit Button */}
             <Grid item xs={12}>
@@ -186,23 +125,14 @@ const SignUp = () => {
                   "&:hover": { backgroundColor: "#FF4500" },
                 }}
               >
-                {isSubmitting ? "Registering..." : "Sign Up"}
+                {isSubmitting ? "Updating..." : "Update"}
               </Button>
             </Grid>
           </Grid>
         </form>
-            {/* Link to Login page */}
-            <Grid container justifyContent="center" sx={{ mt: 2 }}>
-          <Typography variant="body2" color="textSecondary">
-            Already have an account?{" "}
-            <Link to="/login" style={{ textDecoration: "none", color: "#3f51b5" }}>
-              Login here
-            </Link>
-          </Typography>
-        </Grid>
       </Box>
     </Container>
   );
 };
 
-export default SignUp;
+export default EditUser;

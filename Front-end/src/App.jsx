@@ -10,7 +10,8 @@ import Login from './pages/Auth/login.jsx'
 import LogOut from './pages/Auth/logout.jsx'
 import { Routes, Route } from 'react-router-dom'
 import ProtectedRoute from './pages/ProtectedRoute.jsx'
-import Dashboard from './pages/dashboard/Dashboard.jsx'
+import Dashboard from './pages/dashboard/dashboard.jsx'
+import EditUser from './pages/Auth/editUser.jsx'
 // import { Login } from '@mui/icons-material'
 function App() {
   const [count, setCount] = useState(0)
@@ -20,8 +21,9 @@ function App() {
        {/* <Header /> */}
     <Routes>
 
-      <Route path="/" element={<ProtectedRoute><Index /></ProtectedRoute>} />
+      <Route path="/" element={<Index />} />
       <Route path="/user/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+      <Route path="/edit/user" element={<ProtectedRoute><EditUser /></ProtectedRoute>} />
       <Route path="/Practice" element={<PracticeTable />}></Route>
       <Route path="/signup" element={<SignUp />} />
       <Route path="/login" element={< Login/>} />
