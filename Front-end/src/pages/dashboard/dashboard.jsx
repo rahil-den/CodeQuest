@@ -3,6 +3,7 @@ import Chart from 'react-apexcharts'
 import { getUser } from '../../service/api.js';
 import { useNavigate } from 'react-router-dom';
 import './dashboard.css'
+import { Link } from 'react-router-dom';
 const Dashboard = () => {
 	const [user, setUser] = useState({});
 	const navigate = useNavigate();
@@ -24,8 +25,9 @@ const Dashboard = () => {
 	    <header className="bg-white shadow-lg p-6 rounded-b-2xl">
 	        <nav className="flex items-center justify-between">
 	            <div className="flex items-center gap-4 group">
+					
 	                <span className="material-symbols-outlined text-3xl bg-blue-500 text-white p-2 rounded-lg group-hover:rotate-12 transition-transform">code</span>
-	                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">CodeQuest | User Dashboard</h1>
+	                <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent"><Link to="/">CodeQuest | User Dashboard</Link></h1>
 	            </div>
 	            <div className="flex items-center gap-8">
 	                <span className="material-symbols-outlined cursor-pointer hover:scale-110 transition-all duration-300 relative p-2 hover:bg-blue-50 rounded-full">

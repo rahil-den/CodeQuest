@@ -1,32 +1,49 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Header from "../components/header";
-import "./index.css";
+import ScrollingFeatures from "../components/scrollingfeatures.jsx";
+import AboutUs from "../components/aboutus.jsx";
+import ContactUs from "../components/contactus.jsx";
+import "./homepage.css";
 
 function Index() {
   return (
     <>
       <Header />
       {/* Hero Section Below 👇🏻 */}
-      <div className="container">
-        <h1>Welcome to CodeQuest</h1>
-        <h2>Learn to code with us</h2>
-        <p>
-          CodeQuest is a platform where you can practice coding and learn new
-          concepts. We have a wide range of problems to solve and tutorials to
-          help you learn new concepts. We also have a map that shows you the
-          path to becoming a coding master. So what are you waiting for? Get
-          started now!
-        </p>
-        <div className="button-container">
-          <Link to="/Practice" className="button">
-           Practice
-          </Link>
-          <Link to="/map" className="button">
-            Map
-          </Link>
-        </div>
-      </div> 
+      <section className="text-primary h-[90vh] flex items-start justify-center pt-20 lg:pt-32">
+  <div className="container mx-auto px-6 lg:px-20 text-center">
+    <h1 className="text-4xl lg:text-6xl font-bold">
+      Level Up Your Coding Skills with <span className="text-accent">CodeQuest!</span>
+    </h1>
+    <p className="mt-4 text-xl lg:text-2xl  font-medium">
+      Let's start practicing and write that code.
+    </p>
+    <Link
+      to="/practice"
+      className="mt-6 inline-block bg-accent text-white text-lg font-semibold px-6 py-3 rounded-lg hover:bg-hover transition-all"
+    >
+      Start Practicing
+    </Link>
+  </div>
+</section>
+
+<ScrollingFeatures />
+
+    <div className="m-28">
+      {/* <p className="text-hidden"> */}
+        
+        {/* </p> */}
+    </div>
+
+      <div  id="about-us">
+      
+        <AboutUs />
+      </div>
+
+      <div id="Contact-us">
+        <ContactUs />
+      </div>
     </>
   );
 }

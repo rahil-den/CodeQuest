@@ -14,7 +14,7 @@ import { Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
 import {  updateUser } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
-
+//In this page add edit of adding linkedin and bio
 const EditUser = () => {
 
   const navigate = useNavigate();
