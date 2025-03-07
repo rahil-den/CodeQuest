@@ -20,7 +20,7 @@ const PracticeTable = () => {
 
   return (
     <>
-    <Header/>
+    {/* <Header/> */}
     <div className="table-container">
       {/* Search Header */}
       <div className="search-header">

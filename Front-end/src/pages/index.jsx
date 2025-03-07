@@ -4,6 +4,7 @@ import Header from "../components/header";
 import ScrollingFeatures from "../components/scrollingfeatures.jsx";
 import AboutUs from "../components/aboutus.jsx";
 import ContactUs from "../components/contactus.jsx";
+import Footer from "../components/footer.jsx";
 import "./homepage.css";
 
 function Index() {
@@ -43,6 +44,23 @@ function Index() {
 
       <div id="Contact-us">
         <ContactUs />
+      </div>
+
+      <div id="footer">
+        <footer>
+
+          <Footer />
+          {/* <div className="container mx-auto px-6 lg:px-20 py-6">
+            <div className="flex justify-between items-center">
+              <div>
+                <p className="text-primary">CodeQuest</p>
+              </div>
+              <div>
+                <p className="text-primary">© 2021 CodeQuest. All rights reserved.</p>
+              </div>
+            </div>
+          </div> */}
+        </footer>
       </div>
     </>
   );
