@@ -42,7 +42,7 @@ function Index() {
         <AboutUs />
       </div>
 
-      <div id="Contact-us">
+      <div id="contact-us">
         <ContactUs />
       </div>
 

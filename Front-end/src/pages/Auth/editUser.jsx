@@ -12,57 +12,45 @@ import {
 import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import axios from "axios";
-import {  updateUser } from "../../service/api.js";
+// import {  updateUser } from "../../service/api.js";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../../contexts/AuthContext";
 //In this page add edit of adding linkedin and bio
 const EditUser = () => {
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
     username: "",
-  });
-
-  const [errors, setErrors] = useState({
-    id: 0,
-    username: "",
-    email: "",
-    password: "",
+    linkedin: "",
+    bio: "",
+    jobRole: "",
   });
 
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { updateUser } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
 
-  const validateForm = () => {
-    let isValid = true;
-    let newErrors = { username: "" };
-
-    if (!formData.username.trim()) {
-      newErrors.username = "Username is required";
-      isValid = false;
-    }
-
-    setErrors(newErrors);
-    return isValid;
-  };
-
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (validateForm()) {
       setIsSubmitting(true);
       updateUser(formData).then((data) => {
-        confirm("Updated Profile successfully");
-        navigate("/user/dashboard");
+        alert("Updated Profile successfully");
       }).catch((error) => {
         console.log(error);
       });
       setIsSubmitting(false);
-    }
+      // updateUser(formData).then((data) => {
+      //   confirm("Updated Profile successfully");
+      //   navigate("/user/dashboard");
+      // }).catch((error) => {
+      //   console.log(error);
+      // });
+      // setIsSubmitting(false);
   };
 
   return (
@@ -100,8 +88,34 @@ const EditUser = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                error={!!errors.username}
-                helperText={errors.username}
+                required
+                sx={{ backgroundColor: "white", borderRadius: 1 }}
+              />
+              <TextField
+                fullWidth
+                label="Linkedin"
+                name="linkedin"
+                value={formData.linkedin}
+                onChange={handleChange}
+                required
+                sx={{ backgroundColor: "white", borderRadius: 1 }}
+              />
+              <TextField
+                fullWidth
+                label="Job Role"
+                name="jobRole"
+                value={formData.jobRole}
+                onChange={handleChange}
+                required
+                sx={{ backgroundColor: "white", borderRadius: 1 }}
+              />
+              <TextField
+                fullWidth
+                label="Bio"
+                name="bio"
+                value={formData.bio}
+                onChange={handleChange}
+                required
                 sx={{ backgroundColor: "white", borderRadius: 1 }}
               />
             </Grid>

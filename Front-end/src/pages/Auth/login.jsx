@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
 import { TextField, Button, Grid, Typography, Paper, Box } from '@mui/material';
-import { login } from '../../service/api';
-import { useAuth } from '../../store/auth';
+import { useAuth } from '../../contexts/AuthContext';
 import { useNavigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';  // Import Link component
+import { Link } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
-    let { storeTokenInLS } = useAuth();
-    let naivgate = useNavigate();
+    const { login } = useAuth();
+    let navigate = useNavigate();
 
     const handleSubmit = (event) => {
         event.preventDefault();
@@ -18,12 +17,7 @@ const Login = () => {
             setError('Both fields are required!');
         } else {
             setError('');
-            // Add your login logic here (API calls, state management, etc.)
-            login({ email, password }).then((data) => {
-                storeTokenInLS(data);
-                naivgate('/');
-            });
-            console.log('Logged in with:', { email, password });
+            login({ email, password });
         }
     };
 
@@ -35,11 +29,43 @@ const Login = () => {
                 justifyContent: 'center',
                 alignItems: 'center',
                 height: '100vh',
-                backgroundColor: '#f4f6f8',
+                background: 'linear-gradient(135deg, #1a1a2e, #16213e)',
+                backgroundSize: 'cover',
             }}
         >
-            <Paper elevation={3} sx={{ padding: 3, width: '100%', maxWidth: 400 }}>
-                <Typography variant="h5" align="center" gutterBottom>
+            <Paper 
+                elevation={3} 
+                sx={{ 
+                    padding: 4, 
+                    width: '100%', 
+                    maxWidth: 400,
+                    background: 'rgba(255, 255, 255, 0.9)',
+                    borderRadius: 2,
+                    boxShadow: '0 8px 32px rgba(0, 0, 0, 0.2)'
+                }}
+            >
+                <Grid container justifyContent="center" sx={{ marginBottom: 3 }}>
+                    <Button
+                        onClick={() => navigate('/')}
+                        variant="text"
+                        color="primary"
+                        sx={{ textTransform: 'none' }}
+                    >
+                        <Typography 
+                            variant="h4" 
+                            sx={{ 
+                                fontWeight: 'bold',
+                                background: 'linear-gradient(90deg, #FF8C00, #FF4500)',
+                                WebkitBackgroundClip: 'text',
+                                WebkitTextFillColor: 'transparent'
+                            }}
+                        >
+                            CodeQuest <span role="img" aria-label="rocket">🚀</span>
+                        </Typography>
+                    </Button>
+                </Grid>
+                
+                <Typography variant="h5" align="center" gutterBottom fontWeight="bold" color="#16213e">
                     Login
                 </Typography>
                 <form onSubmit={handleSubmit}>
@@ -78,8 +104,19 @@ const Login = () => {
                                 type="submit"
                                 fullWidth
                                 variant="contained"
-                                color="primary"
                                 size="large"
+                                sx={{
+                                    mt: 1,
+                                    py: 1.5,
+                                    fontSize: "16px",
+                                    textTransform: "none",
+                                    fontWeight: "bold",
+                                    background: "linear-gradient(90deg, #FF8C00, #FF4500)",
+                                    "&:hover": { 
+                                        background: "linear-gradient(90deg, #FF4500, #FF8C00)" 
+                                    },
+                                    borderRadius: 1.5
+                                }}
                             >
                                 Login
                             </Button>
@@ -87,11 +124,10 @@ const Login = () => {
                     </Grid>
                 </form>
 
-                {/* Link to Register Page */}
-                <Grid container justifyContent="center" sx={{ marginTop: 2 }}>
+                <Grid container justifyContent="center" sx={{ marginTop: 3 }}>
                     <Typography variant="body2" color="textSecondary">
                         Don't have an account?{' '}
-                        <Link to="/signup" style={{ textDecoration: 'none', color: '#3f51b5' }}>
+                        <Link to="/signup" style={{ textDecoration: 'none', color: '#FF8C00', fontWeight: 'bold' }}>
                             Register here
                         </Link>
                     </Typography>

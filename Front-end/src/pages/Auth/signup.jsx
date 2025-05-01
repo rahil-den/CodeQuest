@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   TextField,
   Button,
@@ -8,18 +8,14 @@ import {
   Container,
   IconButton,
   InputAdornment,
+  Paper
 } from "@mui/material";
 import { Link } from "react-router-dom";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import axios from "axios";
-import { signUp } from "../../service/api.js";
+import { useAuth } from "../../contexts/AuthContext";
 import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
-  // useEffect(() => {
-  //   document.title = "Registration | CodeQuest"; // Set page title
-  // }, []);
-
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -36,6 +32,7 @@ const SignUp = () => {
 
   const [showPassword, setShowPassword] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const { register } = useAuth();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -76,8 +73,8 @@ const SignUp = () => {
 
     if (validateForm()) {
       setIsSubmitting(true);
-      signUp(formData).then((data) => {
-        confirm("User created successfully");
+      register(formData).then((data) => {
+        // confirm("User created successfully");
         navigate("/login");
       }).catch((error) => {
         console.log(error);
@@ -87,27 +84,50 @@ const SignUp = () => {
   };
 
   return (
-    <Container maxWidth="sm">
-      <Box
+    <Box
+      sx={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        background: "linear-gradient(135deg, #1a1a2e, #16213e)",
+        backgroundSize: "cover",
+        padding: 2
+      }}
+    >
+      <Paper
+        elevation={3}
         sx={{
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          mt: 10,
-          p: 4,
+          width: "100%",
+          maxWidth: 500,
+          padding: 4,
           borderRadius: 2,
-          boxShadow: 5,
-          background: "linear-gradient(135deg, #FFD700, #FFA500)",
-          fontFamily: "Poppins, sans-serif",
+          background: "rgba(255, 255, 255, 0.9)",
+          boxShadow: "0 8px 32px rgba(0, 0, 0, 0.2)"
         }}
       >
-        {/* Logo */}
-        <Box sx={{ mb: 2 }}>
-          <img src="/react.svg" alt="CodeQuest" width={80} />
-        </Box>
-
-        <Typography variant="h4" fontWeight="bold" gutterBottom color="white">
+        <Grid container justifyContent="center" sx={{ marginBottom: 3 }}>
+          <Button
+            onClick={() => navigate("/")}
+            variant="text"
+            color="primary"
+            sx={{ textTransform: "none" }}
+          >
+            <Typography 
+              variant="h4" 
+              sx={{ 
+                fontWeight: 'bold',
+                background: 'linear-gradient(90deg, #FF8C00, #FF4500)',
+                WebkitBackgroundClip: 'text',
+                WebkitTextFillColor: 'transparent'
+              }}
+            >
+              CodeQuest <span role="img" aria-label="rocket">🚀</span>
+            </Typography>
+          </Button>
+        </Grid>
+        
+        <Typography variant="h5" align="center" fontWeight="bold" gutterBottom color="#16213e">
           Registration
         </Typography>
 
@@ -123,7 +143,7 @@ const SignUp = () => {
                 onChange={handleChange}
                 error={!!errors.username}
                 helperText={errors.username}
-                sx={{ backgroundColor: "white", borderRadius: 1 }}
+                variant="outlined"
               />
             </Grid>
 
@@ -137,7 +157,7 @@ const SignUp = () => {
                 onChange={handleChange}
                 error={!!errors.email}
                 helperText={errors.email}
-                sx={{ backgroundColor: "white", borderRadius: 1 }}
+                variant="outlined"
               />
             </Grid>
 
@@ -152,7 +172,7 @@ const SignUp = () => {
                 onChange={handleChange}
                 error={!!errors.password}
                 helperText={errors.password}
-                sx={{ backgroundColor: "white", borderRadius: 1 }}
+                variant="outlined"
                 InputProps={{
                   endAdornment: (
                     <InputAdornment position="end">
@@ -174,7 +194,6 @@ const SignUp = () => {
                 type="submit"
                 fullWidth
                 variant="contained"
-                color="primary"
                 disabled={isSubmitting}
                 sx={{
                   mt: 2,
@@ -182,8 +201,11 @@ const SignUp = () => {
                   fontSize: "16px",
                   textTransform: "none",
                   fontWeight: "bold",
-                  backgroundColor: "#FF8C00",
-                  "&:hover": { backgroundColor: "#FF4500" },
+                  background: "linear-gradient(90deg, #FF8C00, #FF4500)",
+                  "&:hover": { 
+                    background: "linear-gradient(90deg, #FF4500, #FF8C00)" 
+                  },
+                  borderRadius: 1.5
                 }}
               >
                 {isSubmitting ? "Registering..." : "Sign Up"}
@@ -191,17 +213,18 @@ const SignUp = () => {
             </Grid>
           </Grid>
         </form>
-            {/* Link to Login page */}
-            <Grid container justifyContent="center" sx={{ mt: 2 }}>
+        
+        {/* Link to Login page */}
+        <Grid container justifyContent="center" sx={{ mt: 3 }}>
           <Typography variant="body2" color="textSecondary">
             Already have an account?{" "}
-            <Link to="/login" style={{ textDecoration: "none", color: "#3f51b5" }}>
+            <Link to="/login" style={{ textDecoration: "none", color: "#FF8C00", fontWeight: "bold" }}>
               Login here
             </Link>
           </Typography>
         </Grid>
-      </Box>
-    </Container>
+      </Paper>
+    </Box>
   );
 };
 

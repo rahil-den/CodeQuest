@@ -778,3 +778,6 @@ video {
   --tw-ring-opacity: 1;
   --tw-ring-color: rgb(191 219 254 / var(--tw-ring-opacity));
 }
+.tet{
+  user-select: none;
+}

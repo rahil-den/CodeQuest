@@ -14,6 +14,7 @@ export default function Footer() {
             </a>
             <a href="#" className="hover:scale-110 transition">
               <img src="https://cdn-icons-png.flaticon.com/512/733/733553.png" alt="GitHub" className="w-5 h-5" />
+              
             </a>
             <a href="#" className="hover:scale-110 transition">
               <img src="https://cdn-icons-png.flaticon.com/512/733/733561.png" alt="LinkedIn" className="w-5 h-5" />
@@ -22,8 +23,17 @@ export default function Footer() {
         </div>
   
         {/* Copyright */}
+        
+       
         <div className="text-center mt-6 text-sm opacity-70">
           © {new Date().getFullYear()} CodeQuest. All rights reserved.
+          Built and designed by {"RAT team"}.
+
+        </div>
+        {/* Additional Links */}
+        <div className="text-center mt-2 text-sm opacity-70">
+          <a href="#" className="hover:underline">Privacy Policy</a> | 
+          <a href="#" className="hover:underline"> Terms of Service</a>
         </div>
       </footer>
     );

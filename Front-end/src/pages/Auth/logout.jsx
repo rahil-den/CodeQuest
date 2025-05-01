@@ -1,14 +1,15 @@
 import React from 'react'
 import { useEffect } from 'react';
-import { useAuth } from '../../store/auth';
+import { useAuth } from '../../contexts/AuthContext';
+// import { useAuth } from '../../store/auth';
 const LogOut = () => {
-    const { logoutUser } = useAuth();
+    const { logout } = useAuth();
     useEffect(() => {
-        logoutUser();
+      logout();
     }, [])
   return (
     <div>
-      Logout
+        Logout
     </div>
   )
 }
