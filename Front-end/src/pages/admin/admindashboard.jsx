@@ -2,8 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useAuth } from '../../contexts/AuthContext';
 // import AdminHeader from '../../components/adminComponents/adminheader';
 // import AdminSidebar from '../../components/adminComponents/adminsidebar';
-import AdminHeader from '../../components/adminComponents/AdminHeader';
-import AdminSidebar from '../../components/adminComponents/AdminSidebar';
+import AdminHeader from '../../components/adminComponents/adminheader';
+import AdminSidebar from '../../components/adminComponents/adminsidebar';
 // import DashboardContent from '../../components/adminComponents/admindashboard';
 const AdminDashboard = () => {
   const { logout } = useAuth();
