@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
-import AdminHeader from './AdminHeader'
-import AdminSidebar from './AdminSidebar'
+import AdminHeader from './adminheader.jsx'
+import AdminSidebar from './adminsidebar.jsx'
 
 // import { getAllProblems, deleteProblem } from '../../service/api.js'
 import { getAllProblems, deleteProblem } from '../../service/api.js'

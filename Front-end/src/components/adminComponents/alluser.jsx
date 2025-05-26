@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 
-import AdminHeader from './AdminHeader'
-import AdminSidebar from './AdminSidebar'
+import AdminHeader from './adminheader.jsx'
+import AdminSidebar from './adminsidebar.jsx'
 import { getAlluser, deleteUser as deleteUserapi } from '../../service/api.js'
 import { toast, ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import AdminHeader from './AdminHeader';
-import AdminSidebar from './AdminSidebar';
+import AdminHeader from './adminheader.jsx';
+import AdminSidebar from './adminsidebar.jsx';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
   TextField,
