@@ -11,7 +11,7 @@ const aiRoutes = require('./ai-handle/routes/aiRoutes');
 
 // Create Express app
 const app = express();
-const PORT = process.env.PORT || 6565;
+const PORT = process.env.DB_PORT || 6565;
 
 // Middleware
 app.use(cors());
