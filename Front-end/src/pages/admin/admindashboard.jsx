@@ -4,7 +4,7 @@ import { useAuth } from '../../contexts/AuthContext';
 // import AdminSidebar from '../../components/adminComponents/adminsidebar';
 import AdminHeader from '../../components/adminComponents/AdminHeader';
 import AdminSidebar from '../../components/adminComponents/AdminSidebar';
-import DashboardContent from '../../components/adminComponents/admindashboard';
+// import DashboardContent from '../../components/adminComponents/admindashboard';
 const AdminDashboard = () => {
   const { logout } = useAuth();
   const [isMobile, setIsMobile] = useState(false);
