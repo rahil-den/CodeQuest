@@ -65,7 +65,7 @@ print(twoSum(nums, target))`);
   
     try {
       console.log("Sending request to server...");
-      const response = await fetch("http://localhost:6565/api/execute/", {
+      const response = await fetch("https://codequest-service.onrender.com/api/execute/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
