@@ -15,7 +15,18 @@
 - 🛠️ **Admin Panel**: Manage problems, users, submissions, and usage analytics securely.
 
 ---
+## 📸 Screenshots
 
+![Screenshot 5](./screenshots/Homepage.png)
+![Screenshot 6"](./screenshots/Practice%20table.png)
+![Screenshot 7"](./screenshots/ProblemSolvingpage.png)
+![Screenshot 1](./screenshots/Admin%20all%20user%20page.png)
+![Screenshot 2](./screenshots/AdminDashboard.png)
+![Screenshot 3](./screenshots/AllProblemsList%20Admin%20page.png)
+![Screenshot 4](./screenshots/AllSubmission%20Admin%20PAGE.png)
+
+
+---
 ## 🛠️ Tech Stack
 
 | Layer       | Technology                   |
